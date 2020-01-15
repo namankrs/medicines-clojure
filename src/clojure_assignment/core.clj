@@ -11,9 +11,6 @@
 (defn map-values [locations med quantity]
   (zipmap locations (map (partial zipmap med) quantity)))
 
-(defn apply-operator [operator first-value second-value] (operator first-value second-value))
-(defn get-keys [transaction reference-key] [(transaction reference-key) (transaction "item")])
-
 (defn apply-transaction [initial-values {from "from" to "to" item "item" quantity "quantity"}]
   (update-in (update-in initial-values [from item] - quantity) [to item] + quantity))
 
